@@ -3,51 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>品牌／產品資料提交｜LIFF</title>
-  <meta name="theme-color" content="#111827">
+  <title>峰值體驗 - 專業顧問諮詢表單</title>
+  <meta name="theme-color" content="#ffffff">
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
-    :root { --bg:#0b1220; --card:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --accent:#22c55e; --accent2:#3b82f6; --danger:#ef4444; }
-    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#0b1220,#0b1220 60%,#101826);color:var(--text);
-      font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial}
-    .wrap{max-width:720px;margin:0 auto;padding:28px}
-    .card{background:var(--card);border:1px solid #1f2937;border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    h1{margin:0 0 14px;font-size:22px;letter-spacing:.3px}
-    p.lead{margin:0 0 18px;color:var(--muted);font-size:14px}
+    :root{
+      --bg:#f7fafc; --card:#ffffff; --text:#0f172a; --muted:#64748b;
+      --border:#e5e7eb; --accent:#3b82f6; --accent-2:#22c55e; --danger:#ef4444;
+      --input:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:linear-gradient(180deg,#ffffff 0%, #f7fafc 100%);
+      color:var(--text);
+      font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
+    }
+    .wrap{max-width:760px;margin:0 auto;padding:28px}
+    .card{
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:22px; box-shadow:0 10px 24px rgba(15,23,42,.06)
+    }
+    h1{margin:0 0 10px; font-size:22px; letter-spacing:.2px}
+    p.lead{margin:0 0 18px; color:var(--muted); font-size:14px}
+    .topbar{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:8px}
+    .profile{display:flex; align-items:center; gap:10px}
+    .avatar{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);object-fit:cover;background:#fff}
+    .status{font-size:12px;color:var(--muted)}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:#eef6ff;border:1px solid #d6e6ff;color:#1d4ed8;
+      padding:8px 12px;border-radius:999px;font-size:12px}
+    .divider{height:1px;background:var(--border);margin:14px 0}
+    label{font-size:13px;color:#475569;margin-bottom:6px;display:block}
+    input,textarea,select{
+      width:100%;background:var(--input);border:1px solid var(--border);color:var(--text);
+      border-radius:12px;padding:12px 14px;font-size:14px;outline:none;transition:.2s border,.2s box-shadow
+    }
+    input:focus,textarea:focus,select:focus{border-color:#bfdbfe;box-shadow:0 0 0 3px rgba(59,130,246,.18)}
+    textarea{min-height:140px;resize:vertical}
     .grid{display:grid;grid-template-columns:1fr;gap:14px}
     @media(min-width:720px){.grid-2{grid-template-columns:1fr 1fr}}
-    label{font-size:13px;color:#cbd5e1;margin-bottom:6px;display:block}
-    input,textarea,select{
-      width:100%;background:#0b1220;border:1px solid #263043;color:#e5e7eb;border-radius:12px;
-      padding:12px 14px;font-size:14px;outline:none;transition:.2s border,.2s box-shadow
-    }
-    input:focus,textarea:focus,select:focus{border-color:#334155;box-shadow:0 0 0 3px rgba(59,130,246,.15)}
-    textarea{min-height:120px;resize:vertical}
     .row{display:grid;gap:10px}
-    .row-2{grid-template-columns:1fr 1fr}
     .muted{color:var(--muted);font-size:12px}
     .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
     button{
-      border:0;border-radius:12px;padding:12px 16px;font-size:14px;cursor:pointer;
-      background:#1f2937;color:#e5e7eb;transition:.2s transform,.2s background
+      border:0;border-radius:12px;padding:12px 16px;font-size:14px;cursor:pointer;background:#e2e8f0;color:#0f172a;
+      transition:.15s transform,.2s background
     }
     button:active{transform:translateY(1px)}
-    .primary{background:var(--accent2)}
+    .primary{background:var(--accent);color:#fff}
     .primary:hover{filter:brightness(1.05)}
-    .success{background:var(--accent)}
-    .danger{background:var(--danger)}
-    .pill{display:inline-flex;align-items:center;gap:8px;background:#0b1220;border:1px solid #1f2a44;color:#9fb2cc;
-      padding:8px 12px;border-radius:999px;font-size:12px}
-    .divider{height:1px;background:#1f2937;margin:14px 0}
+    .danger{background:var(--danger);color:#fff}
+    .tag{display:inline-block;background:#f1f5f9;border:1px solid var(--border);color:#0f172a;border-radius:999px;padding:6px 10px;font-size:12px}
+    .footer{color:#94a3b8;font-size:12px;text-align:center;margin-top:18px}
     .hide{display:none}
-    .footer{color:#64748b;font-size:12px;text-align:center;margin-top:18px}
-    .tag{display:inline-block;background:#0b1220;border:1px solid #2a364e;color:#a5b4fc;border-radius:999px;padding:6px 10px;font-size:12px}
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .profile{display:flex;align-items:center;gap:10px}
-    .avatar{width:36px;height:36px;border-radius:50%;background:#111826;border:1px solid #263043;object-fit:cover}
-    .status{font-size:12px;color:#9ca3af}
     .success-view{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:30px}
     .success-view h2{margin:0}
+    .switch{
+      position:relative;width:44px;height:24px;background:#e5e7eb;border-radius:999px;display:inline-block;vertical-align:middle
+    }
+    .switch::after{
+      content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:.2s
+    }
+    .switch.on{background:#a7f3d0}
+    .switch.on::after{left:23px}
   </style>
 </head>
 <body>
@@ -55,8 +72,8 @@
     <div class="card">
       <div class="topbar">
         <div>
-          <h1>品牌／產品資料提交</h1>
-          <p class="lead">此頁面使用 LINE Front-end Framework（LIFF）。送出後可回傳到 LINE 對話，或 POST 到你的 Webhook（例如 n8n）。</p>
+          <h1>峰值體驗 - 專業顧問諮詢表單</h1>
+          <p class="lead">您好我是專業顧問，接下來您可以跟我講一下你的品牌大致上的內容，以及您可能的商品介紹，我可以根據峰值體驗，協助您設計出MOT。</p>
         </div>
         <div class="profile">
           <img id="avatar" class="avatar" alt="">
@@ -88,7 +105,7 @@
             <input id="productName" name="productName" placeholder="例：五行守護香（木氣香）" required />
           </div>
 
-          <div class="row row-2">
+          <div class="grid grid-2">
             <div>
               <label for="category">分類</label>
               <select id="category" name="category">
@@ -106,28 +123,12 @@
             </div>
           </div>
 
-          <div class="row row-2">
-            <div>
-              <label for="sku">SKU / 產品代碼</label>
-              <input id="sku" name="sku" placeholder="例：JWT-WOOD-001" />
-            </div>
-            <div>
-              <label for="launchDate">上市日期</label>
-              <input id="launchDate" name="launchDate" type="date" />
-            </div>
-          </div>
-
           <div>
-            <label for="imageUrl">產品主圖 URL</label>
-            <input id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg" />
-          </div>
-
-          <div>
-            <label for="desc">產品描述 / 卖點 <span class="muted">（必填；支援多行）</span></label>
+            <label for="desc">產品描述 / 賣點 <span class="muted">（必填；支援多行）</span></label>
             <textarea id="desc" name="desc" placeholder="例：結合姓名學 × 五行理論，補足能量、提升儀式感..." required></textarea>
           </div>
 
-          <div class="row row-2">
+          <div class="grid grid-2">
             <div>
               <label for="contact">聯絡 Email</label>
               <input id="contact" name="contact" type="email" placeholder="you@example.com" />
@@ -141,97 +142,91 @@
 
         <div class="divider"></div>
         <div class="btns">
-          <button type="button" class="primary" id="sendToLineBtn">送回 LINE 對話</button>
-          <button type="submit" class="success">POST 到 Webhook</button>
+          <button type="submit" class="primary" id="submitBtn">送出（POST 到 Webhook）</button>
           <button type="button" class="danger" id="resetBtn">清除表單</button>
           <span class="tag">Webhook：<code id="whLabel">未設定</code></span>
         </div>
-        <p class="muted">提示：你可以只用其中一種提交方式；未設定 Webhook 也能送回 LINE 對話。</p>
+        <p class="muted">送出後會直接 POST 到你的 Webhook（例如 n8n），成功後 5 秒自動關閉此頁面。</p>
       </form>
 
       <div id="successView" class="success-view hide">
         <h2>✅ 已提交完成！</h2>
-        <p class="muted">你可以關閉此頁面，或繼續提交下一筆資料。</p>
-        <div class="btns">
-          <button id="newEntryBtn">新增下一筆</button>
-          <button id="closeBtn">關閉此頁</button>
-        </div>
+        <p class="muted" id="countdownText">將在 5 秒後自動關閉...</p>
       </div>
     </div>
 
     <div class="footer">
-      © <span id="year"></span> LIFF Demo · 建議將此頁註冊為 LIFF Endpoint：<br/>
-      <code>https://&lt;你的 GitHub 用戶名&gt;.github.io/&lt;你的 Repo&gt;/index.html</code>
+      © <span id="year"></span> LIFF Form · 建議將此頁註冊為 LIFF Endpoint：<br/>
+      <code>https://&lt;你的 GitHub 帳號&gt;.github.io/&lt;repo&gt;/index.html</code>
     </div>
   </div>
 
   <script>
-    // ======= 1) 基本設定：請替換為你的 LIFF 與 Webhook =======
-    const LIFF_ID = "YOUR_LIFF_ID_HERE"; // ← 必填：換成你的 LIFF ID
-    const WEBHOOK_URL = "";              // ← 選填：例如你的 n8n Webhook URL
+    // ======= 1) 設定：請替換為你的 LIFF 與 Webhook =======
+    const LIFF_ID = "2008207008-8AzkQd0m";      // ← 必填：你的 LIFF ID
+    const WEBHOOK_URL = "https://wooow.zeabur.app/webhook/gogo01";   // ← 必填：你的 n8n Webhook URL
     // ================================================
 
-    // UI 參考
     const liffStatus = document.getElementById("liffStatus");
     const whLabel = document.getElementById("whLabel");
     const avatar = document.getElementById("avatar");
     const displayNameEl = document.getElementById("displayName");
     const uidEl = document.getElementById("uid");
     const form = document.getElementById("productForm");
-    const sendToLineBtn = document.getElementById("sendToLineBtn");
     const resetBtn = document.getElementById("resetBtn");
     const successView = document.getElementById("successView");
-    const newEntryBtn = document.getElementById("newEntryBtn");
-    const closeBtn = document.getElementById("closeBtn");
+    const countdownText = document.getElementById("countdownText");
 
     document.getElementById("year").textContent = new Date().getFullYear();
     whLabel.textContent = WEBHOOK_URL ? "已設定" : "未設定";
 
-    // 將表單轉物件
     function getFormData() {
-      const data = {
+      return {
         brandName: document.getElementById("brandName").value.trim(),
         brandWebsite: document.getElementById("brandWebsite").value.trim(),
         productName: document.getElementById("productName").value.trim(),
         category: document.getElementById("category").value,
         price: document.getElementById("price").value,
-        sku: document.getElementById("sku").value.trim(),
-        launchDate: document.getElementById("launchDate").value,
-        imageUrl: document.getElementById("imageUrl").value.trim(),
         desc: document.getElementById("desc").value.trim(),
         contact: document.getElementById("contact").value.trim(),
         notes: document.getElementById("notes").value.trim(),
       };
-      return data;
     }
 
-    // 簡單驗證
     function validate(data) {
       const errors = [];
       if (!data.brandName) errors.push("品牌名稱為必填");
       if (!data.productName) errors.push("產品名稱為必填");
       if (!data.desc) errors.push("產品描述為必填");
+      if (!WEBHOOK_URL) errors.push("尚未設定 Webhook URL");
       return errors;
     }
 
-    // 顯示成功畫面
-    function showSuccess() {
+    function showSuccessAndAutoClose() {
       form.classList.add("hide");
       successView.classList.remove("hide");
-    }
-    function backToForm() {
-      successView.classList.add("hide");
-      form.classList.remove("hide");
+
+      // 5 秒倒數後關閉
+      let seconds = 5;
+      countdownText.textContent = `將在 ${seconds} 秒後自動關閉...`;
+      const timer = setInterval(() => {
+        seconds--;
+        countdownText.textContent = `將在 ${seconds} 秒後自動關閉...`;
+        if (seconds <= 0) {
+          clearInterval(timer);
+          if (window.liff && liff.isInClient()) {
+            liff.closeWindow();
+          } else {
+            // 外部瀏覽器：導回 LINE（或改成你的落地頁）
+            window.location.href = "https://line.me";
+          }
+        }
+      }, 1000);
     }
 
     resetBtn.addEventListener("click", () => form.reset());
-    newEntryBtn.addEventListener("click", () => { form.reset(); backToForm(); });
-    closeBtn.addEventListener("click", () => {
-      if (liff.isInClient()) liff.closeWindow();
-      else window.location.href = "https://line.me";
-    });
 
-    // ======= 2) LIFF 初始化與登入流程 =======
+    // ======= 2) LIFF 初始化與登入 =======
     async function initLiff() {
       try {
         liffStatus.textContent = "初始化 LIFF...";
@@ -240,7 +235,7 @@
 
         if (!liff.isLoggedIn()) {
           liffStatus.textContent = "尚未登入，重新導向登入...";
-          liff.login(); // 會重整頁面並回來
+          liff.login();
           return;
         }
 
@@ -257,73 +252,28 @@
       }
     }
 
-    // ======= 3) 送回 LINE 對話 =======
-    sendToLineBtn.addEventListener("click", async () => {
-      const payload = getFormData();
-      const errs = validate(payload);
-      if (errs.length) {
-        alert("請修正以下錯誤：\n• " + errs.join("\n• "));
-        return;
-      }
-
-      const lines = [
-        `🧾 品牌／產品資料`,
-        `品牌：${payload.brandName}`,
-        payload.brandWebsite ? `官網：${payload.brandWebsite}` : null,
-        `產品：${payload.productName}`,
-        payload.category ? `分類：${payload.category}` : null,
-        payload.price ? `售價：${payload.price}` : null,
-        payload.sku ? `SKU：${payload.sku}` : null,
-        payload.launchDate ? `上市：${payload.launchDate}` : null,
-        payload.imageUrl ? `主圖：${payload.imageUrl}` : null,
-        `描述：${payload.desc}`,
-        payload.contact ? `聯絡：${payload.contact}` : null,
-        payload.notes ? `備註：${payload.notes}` : null,
-      ].filter(Boolean).join("\n");
-
-      try {
-        if (!liff.isLoggedIn()) {
-          liff.login();
-          return;
-        }
-        await liff.sendMessages([{ type: "text", text: lines }]);
-        alert("已傳送到 LINE 對話！");
-        showSuccess();
-      } catch (e) {
-        console.error(e);
-        alert("傳送到 LINE 失敗，請確認此 LIFF 是否有訊息權限（chat_message.write）。");
-      }
-    });
-
-    // ======= 4) POST 到 Webhook（n8n 等） =======
+    // ======= 3) 提交：只 POST 到 Webhook =======
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const payload = getFormData();
       const errs = validate(payload);
-      if (errs.length) {
-        alert("請修正以下錯誤：\n• " + errs.join("\n• "));
-        return;
-      }
-      if (!WEBHOOK_URL) {
-        alert("尚未設定 Webhook URL（程式碼最上方 WEBHOOK_URL）。");
-        return;
-      }
+      if (errs.length) { alert("請修正以下錯誤：\n• " + errs.join("\n• ")); return; }
 
-      // 附帶 LIFF 基本資訊
       try {
         const ctx = {
           lang: navigator.language,
           ts: new Date().toISOString(),
           liff: {
-            inClient: liff.isInClient(),
+            inClient: liff.isInClient?.() || false,
             os: liff.getOS?.() || "",
             version: liff.getVersion?.() || "",
           }
         };
         let profile = null;
         try { profile = await liff.getProfile(); } catch {}
+
         const body = {
-          type: "brand_product_form",
+          type: "consult_form",
           profile,
           data: payload,
           context: ctx,
@@ -336,14 +286,13 @@
         });
 
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        showSuccess();
+        showSuccessAndAutoClose();
       } catch (err) {
         console.error(err);
         alert("POST 失敗，請檢查 Webhook CORS / 網址是否正確。");
       }
     });
 
-    // 啟動
     initLiff();
   </script>
 </body>
