@@ -9,62 +9,35 @@
   <style>
     :root{
       --bg:#f7fafc; --card:#ffffff; --text:#0f172a; --muted:#64748b;
-      --border:#e5e7eb; --accent:#3b82f6; --accent-2:#22c55e; --danger:#ef4444;
-      --input:#ffffff;
+      --border:#e5e7eb; --accent:#3b82f6; --danger:#ef4444; --input:#ffffff;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0; background:linear-gradient(180deg,#ffffff 0%, #f7fafc 100%);
-      color:var(--text);
-      font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
-    }
+    body{margin:0;background:linear-gradient(180deg,#ffffff 0%,#f7fafc 100%);
+      color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial}
     .wrap{max-width:760px;margin:0 auto;padding:28px}
-    .card{
-      background:var(--card); border:1px solid var(--border); border-radius:16px;
-      padding:22px; box-shadow:0 10px 24px rgba(15,23,42,.06)
-    }
-    h1{margin:0 0 10px; font-size:22px; letter-spacing:.2px}
-    p.lead{margin:0 0 18px; color:var(--muted); font-size:14px}
-    .topbar{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:8px}
-    .profile{display:flex; align-items:center; gap:10px}
-    .avatar{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);object-fit:cover;background:#fff}
-    .status{font-size:12px;color:var(--muted)}
-    .pill{display:inline-flex;align-items:center;gap:8px;background:#eef6ff;border:1px solid #d6e6ff;color:#1d4ed8;
-      padding:8px 12px;border-radius:999px;font-size:12px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:0 10px 24px rgba(15,23,42,.06)}
+    h1{margin:0 0 10px;font-size:22px}
+    p.lead{margin:0 0 18px;color:var(--muted);font-size:14px}
+    .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:8px}
+    .toplink a{font-size:12px;color:#1d4ed8;text-decoration:none}
+    .toplink a:hover{text-decoration:underline}
     .divider{height:1px;background:var(--border);margin:14px 0}
-    label{font-size:13px;color:#475569;margin-bottom:6px;display:block}
-    input,textarea,select{
-      width:100%;background:var(--input);border:1px solid var(--border);color:var(--text);
-      border-radius:12px;padding:12px 14px;font-size:14px;outline:none;transition:.2s border,.2s box-shadow
-    }
+    label{font-size:13px;color:#475569;display:block;margin-bottom:10px}
+    input,textarea,select{width:100%;background:var(--input);border:1px solid var(--border);color:var(--text);
+      border-radius:12px;padding:12px 14px;font-size:14px;outline:none;transition:.2s border,.2s box-shadow}
     input:focus,textarea:focus,select:focus{border-color:#bfdbfe;box-shadow:0 0 0 3px rgba(59,130,246,.18)}
     textarea{min-height:140px;resize:vertical}
-    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px}
     @media(min-width:720px){.grid-2{grid-template-columns:1fr 1fr}}
-    .row{display:grid;gap:10px}
-    .muted{color:var(--muted);font-size:12px}
     .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
-    button{
-      border:0;border-radius:12px;padding:12px 16px;font-size:14px;cursor:pointer;background:#e2e8f0;color:#0f172a;
-      transition:.15s transform,.2s background
-    }
+    button{border:0;border-radius:12px;padding:12px 16px;font-size:14px;cursor:pointer;background:#e2e8f0;color:#0f172a;transition:.15s transform,.2s background}
     button:active{transform:translateY(1px)}
     .primary{background:var(--accent);color:#fff}
-    .primary:hover{filter:brightness(1.05)}
     .danger{background:var(--danger);color:#fff}
-    .tag{display:inline-block;background:#f1f5f9;border:1px solid var(--border);color:#0f172a;border-radius:999px;padding:6px 10px;font-size:12px}
     .footer{color:#94a3b8;font-size:12px;text-align:center;margin-top:18px}
     .hide{display:none}
     .success-view{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:30px}
     .success-view h2{margin:0}
-    .switch{
-      position:relative;width:44px;height:24px;background:#e5e7eb;border-radius:999px;display:inline-block;vertical-align:middle
-    }
-    .switch::after{
-      content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:.2s
-    }
-    .switch.on{background:#a7f3d0}
-    .switch.on::after{left:23px}
   </style>
 </head>
 <body>
@@ -75,33 +48,27 @@
           <h1>峰值體驗 - 專業顧問諮詢表單</h1>
           <p class="lead">您好我是專業顧問，接下來您可以跟我講一下你的品牌大致上的內容，以及您可能的商品介紹，我可以根據峰值體驗，協助您設計出MOT。</p>
         </div>
-        <div class="profile">
-          <img id="avatar" class="avatar" alt="">
-          <div>
-            <div id="displayName" class="status">尚未登入</div>
-            <div id="uid" class="muted"></div>
-          </div>
-        </div>
+        <!-- 右上角自訂連結（可改 TOP_RIGHT_LINK 設定） -->
+        <div class="toplink"><a id="topRightLink" href="#" target="_blank" rel="noopener">了解更多</a></div>
       </div>
 
-      <div class="pill">狀態：<span id="liffStatus">初始化中...</span></div>
       <div class="divider"></div>
 
       <form id="productForm" novalidate>
         <div class="grid grid-2">
           <div>
-            <label for="brandName">品牌名稱 <span class="muted">（必填）</span></label>
+            <label for="brandName">品牌名稱 <span style="color:#64748b">(必填)</span></label>
             <input id="brandName" name="brandName" placeholder="例：己文堂 Jiwen Tang" required />
           </div>
           <div>
             <label for="brandWebsite">品牌官網 / 連結</label>
-            <input id="brandWebsite" name="brandWebsite" placeholder="https://example.com" />
+            <input id="brandWebsite" name="brandWebsite" placeholder="無 或 https://example.com" />
           </div>
         </div>
 
         <div class="grid">
           <div>
-            <label for="productName">產品名稱 <span class="muted">（必填）</span></label>
+            <label for="productName">產品名稱 <span style="color:#64748b">(必填)</span></label>
             <input id="productName" name="productName" placeholder="例：五行守護香（木氣香）" required />
           </div>
 
@@ -124,8 +91,8 @@
           </div>
 
           <div>
-            <label for="desc">產品描述 / 賣點 <span class="muted">（必填；支援多行）</span></label>
-            <textarea id="desc" name="desc" placeholder="例：結合姓名學 × 五行理論，補足能量、提升儀式感..." required></textarea>
+            <label for="desc">產品描述 / 賣點</label>
+            <textarea id="desc" name="desc" placeholder="可補充賣點、定位、目標客群等…（選填）"></textarea>
           </div>
 
           <div class="grid grid-2">
@@ -134,19 +101,17 @@
               <input id="contact" name="contact" type="email" placeholder="you@example.com" />
             </div>
             <div>
-              <label for="notes">備註</label>
-              <input id="notes" name="notes" placeholder="其他補充" />
+              <label for="phone">聯絡電話</label>
+              <input id="phone" name="phone" type="tel" placeholder="09xx-xxx-xxx（選填）" />
             </div>
           </div>
         </div>
 
         <div class="divider"></div>
         <div class="btns">
-          <button type="submit" class="primary" id="submitBtn">送出（POST 到 Webhook）</button>
+          <button type="submit" class="primary" id="submitBtn">送出</button>
           <button type="button" class="danger" id="resetBtn">清除表單</button>
-          <span class="tag">Webhook：<code id="whLabel">未設定</code></span>
         </div>
-        <p class="muted">送出後會直接 POST 到你的 Webhook（例如 n8n），成功後 5 秒自動關閉此頁面。</p>
       </form>
 
       <div id="successView" class="success-view hide">
@@ -162,34 +127,39 @@
   </div>
 
   <script>
-    // ======= 1) 設定：請替換為你的 LIFF 與 Webhook =======
-    const LIFF_ID = "2008207008-8AzkQd0m";      // ← 必填：你的 LIFF ID
-    const WEBHOOK_URL = "https://wooow.zeabur.app/webhook/gogo01";   // ← 必填：你的 n8n Webhook URL
-    // ================================================
+    // ======= 基本設定：請替換 =======
+    const LIFF_ID = "2008207008-8AzkQd0m";        // ← 必填：你的 LIFF ID
+    const WEBHOOK_URL = "https://wooow.zeabur.app/webhook/gogo01";     // ← 必填：你的 n8n Webhook URL
+    const TOP_RIGHT_LINK = {                     // ← 可自訂右上角連結（顯示在前端）
+      text: "了解更多",
+      url: "https://www.tw-ren.com/sites/default/files/node/images/innovation/0113_%E6%9B%B8%E6%91%98BN_%E5%B3%B0%E5%80%BC%E9%AB%94%E9%A9%972.jpg"
+    };
+    // =================================
 
-    const liffStatus = document.getElementById("liffStatus");
-    const whLabel = document.getElementById("whLabel");
-    const avatar = document.getElementById("avatar");
-    const displayNameEl = document.getElementById("displayName");
-    const uidEl = document.getElementById("uid");
     const form = document.getElementById("productForm");
     const resetBtn = document.getElementById("resetBtn");
     const successView = document.getElementById("successView");
     const countdownText = document.getElementById("countdownText");
-
     document.getElementById("year").textContent = new Date().getFullYear();
-    whLabel.textContent = WEBHOOK_URL ? "已設定" : "未設定";
+    // 設定右上角連結
+    const linkEl = document.getElementById("topRightLink");
+    if (TOP_RIGHT_LINK?.url) {
+      linkEl.href = TOP_RIGHT_LINK.url;
+      linkEl.textContent = TOP_RIGHT_LINK.text || TOP_RIGHT_LINK.url;
+    } else {
+      linkEl.parentElement.classList.add("hide");
+    }
 
     function getFormData() {
       return {
         brandName: document.getElementById("brandName").value.trim(),
-        brandWebsite: document.getElementById("brandWebsite").value.trim(),
+        brandWebsite: document.getElementById("brandWebsite").value.trim(), // 允許填「無」
         productName: document.getElementById("productName").value.trim(),
         category: document.getElementById("category").value,
         price: document.getElementById("price").value,
-        desc: document.getElementById("desc").value.trim(),
+        desc: document.getElementById("desc").value.trim(),     // 非必填
         contact: document.getElementById("contact").value.trim(),
-        notes: document.getElementById("notes").value.trim(),
+        phone: document.getElementById("phone").value.trim(),   // 非必填
       };
     }
 
@@ -197,7 +167,6 @@
       const errors = [];
       if (!data.brandName) errors.push("品牌名稱為必填");
       if (!data.productName) errors.push("產品名稱為必填");
-      if (!data.desc) errors.push("產品描述為必填");
       if (!WEBHOOK_URL) errors.push("尚未設定 Webhook URL");
       return errors;
     }
@@ -205,7 +174,6 @@
     function showSuccessAndAutoClose() {
       form.classList.add("hide");
       successView.classList.remove("hide");
-
       // 5 秒倒數後關閉
       let seconds = 5;
       countdownText.textContent = `將在 ${seconds} 秒後自動關閉...`;
@@ -214,45 +182,25 @@
         countdownText.textContent = `將在 ${seconds} 秒後自動關閉...`;
         if (seconds <= 0) {
           clearInterval(timer);
-          if (window.liff && liff.isInClient()) {
-            liff.closeWindow();
-          } else {
-            // 外部瀏覽器：導回 LINE（或改成你的落地頁）
-            window.location.href = "https://line.me";
-          }
+          if (window.liff && liff.isInClient()) liff.closeWindow();
+          else window.location.href = "https://line.me";
         }
       }, 1000);
     }
 
     resetBtn.addEventListener("click", () => form.reset());
 
-    // ======= 2) LIFF 初始化與登入 =======
+    // ======= LIFF 初始化（前端不顯示個資，但後端仍可取得 profile）=======
     async function initLiff() {
       try {
-        liffStatus.textContent = "初始化 LIFF...";
         await liff.init({ liffId: LIFF_ID });
-        liffStatus.textContent = "已初始化";
-
-        if (!liff.isLoggedIn()) {
-          liffStatus.textContent = "尚未登入，重新導向登入...";
-          liff.login();
-          return;
-        }
-
-        const profile = await liff.getProfile();
-        displayNameEl.textContent = profile.displayName || "已登入";
-        uidEl.textContent = profile.userId ? `userId: ${profile.userId}` : "";
-        avatar.src = profile.pictureUrl || "";
-        liffStatus.textContent = liff.isInClient() ? "在 LINE 內開啟" : "在外部瀏覽器開啟";
+        if (!liff.isLoggedIn()) { liff.login(); return; }
       } catch (err) {
-        console.error(err);
-        liffStatus.textContent = "LIFF 初始化失敗";
-        displayNameEl.textContent = "未登入";
-        uidEl.textContent = "";
+        console.error("LIFF 初始化失敗", err);
       }
     }
 
-    // ======= 3) 提交：只 POST 到 Webhook =======
+    // ======= 只 POST 到 Webhook =======
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const payload = getFormData();
@@ -260,31 +208,20 @@
       if (errs.length) { alert("請修正以下錯誤：\n• " + errs.join("\n• ")); return; }
 
       try {
+        let profile = null;
+        try { profile = await liff.getProfile(); } catch {}
         const ctx = {
           lang: navigator.language,
           ts: new Date().toISOString(),
-          liff: {
-            inClient: liff.isInClient?.() || false,
-            os: liff.getOS?.() || "",
-            version: liff.getVersion?.() || "",
-          }
+          liff: { inClient: liff.isInClient?.() || false, os: liff.getOS?.() || "", version: liff.getVersion?.() || "" }
         };
-        let profile = null;
-        try { profile = await liff.getProfile(); } catch {}
-
-        const body = {
-          type: "consult_form",
-          profile,
-          data: payload,
-          context: ctx,
-        };
+        const body = { type: "consult_form", profile, data: payload, context: ctx };
 
         const res = await fetch(WEBHOOK_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         });
-
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         showSuccessAndAutoClose();
       } catch (err) {
